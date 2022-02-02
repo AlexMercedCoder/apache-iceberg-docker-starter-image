@@ -54,7 +54,7 @@ RUN echo 'PYSPARK_PYTHON=/usr/bin/python3' >> ~/.bashrc
 RUN . ~/.bashrc
 
 ##COPY Sample Datafiles
-COPY ./sampledata ~/sampledata
+COPY ./sampledata /home/docker/sampledata
 
 ## Iceberg Setup
 COPY ./iceberg-init.bash /home/docker/
