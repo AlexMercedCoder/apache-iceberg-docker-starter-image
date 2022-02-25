@@ -57,8 +57,10 @@ RUN . ~/.bashrc
 COPY ./sampledata /home/docker/sampledata
 
 ## Iceberg Setup
+COPY ./iceberg-spark-init.bash /home/docker/
 COPY ./iceberg-init.bash /home/docker/
 RUN echo 'alias iceberg-init="source /home/docker/iceberg-init.bash"' >> ~/.bashrc
+RUN echo 'alias iceberg-spark-init="source /home/docker/iceberg-spark-init.bash"' >> ~/.bashrc
 RUN mkdir warehouse
 RUN . ~/.bashrc
 

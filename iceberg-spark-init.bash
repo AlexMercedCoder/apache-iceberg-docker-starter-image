@@ -1,4 +1,4 @@
-spark-sql --packages org.apache.iceberg:iceberg-spark3-runtime:0.13.0\
+spark-shell --packages org.apache.iceberg:iceberg-spark3-runtime:0.13.0\
     --conf spark.sql.extensions=org.apache.iceberg.spark.extensions.IcebergSparkSessionExtensions \
     --conf spark.sql.catalog.spark_catalog=org.apache.iceberg.spark.SparkSessionCatalog \
     --conf spark.sql.catalog.spark_catalog.type=hive \
