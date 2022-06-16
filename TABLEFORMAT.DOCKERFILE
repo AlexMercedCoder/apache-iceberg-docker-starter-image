@@ -60,8 +60,12 @@ COPY ./sampledata /home/docker/sampledata
 ## Iceberg Setup
 COPY ./iceberg-spark-init.bash /home/docker/
 COPY ./iceberg-init.bash /home/docker/
+COPY ./hudi-init.bash /home/docker/
+COPY ./delta-init.bash /home/docker/
 RUN echo 'alias iceberg-init="source /home/docker/iceberg-init.bash"' >> ~/.bashrc
 RUN echo 'alias iceberg-spark-init="source /home/docker/iceberg-spark-init.bash"' >> ~/.bashrc
+RUN echo 'alias hudi-init="source /home/docker/hudi-init.bash"' >> ~/.bashrc
+RUN echo 'alias delta-init="source /home/docker/delta-init.bash"' >> ~/.bashrc
 RUN mkdir warehouse
 RUN . ~/.bashrc
 

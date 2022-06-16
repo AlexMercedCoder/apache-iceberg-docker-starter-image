@@ -4,13 +4,17 @@ This container has the following Installed
 - Java 11
 - Scala 2 & 3
 - Python 3
-- Spark
+- Spark 3.2
 
 ## Start SparkSQL with Apache Iceberg
 
 ```
 iceberg-init
 ```
+
+
+
+
 
 ## Start Spark Shell with Apache Iceberg
 
@@ -33,5 +37,17 @@ OPTIONS (
 Then to turn into a iceberg table
 
 ```
-CREATE TABLE local.db.worker_coop USING iceberg AS (SELECT * FROM my_data);
+CREATE TABLE iceberg.db.worker_coop USING iceberg AS (SELECT * FROM my_data);
+```
+
+## Other Table Formats
+
+This command will init Spark-Shell with a Hudi catalog
+```
+hudi-init
+```
+
+This command will init Spark-Shell with a Delta Lake Catalog
+```
+delta-init
 ```

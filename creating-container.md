@@ -42,7 +42,7 @@ RUN . ~/.bashrc
 RUN sudo apt-get install openjdk-11-jdk -y
 
 ## Install Python 2 and Pip/Pip3
-RUN sudo apt-get install python pip -y
+RUN sudo apt-get install python2 pip -y
 
 ## Insall Coursier
 RUN curl -fL https://github.com/coursier/launchers/raw/master/cs-x86_64-pc-linux.gz | gzip -d > cs
@@ -55,9 +55,10 @@ RUN . ~/.bashrc
 
 ## Install Apache Spark
 RUN sudo apt-get install python3 python3-dev -y
-RUN sudo wget https://dlcdn.apache.org/spark/spark-3.0.3/spark-3.0.3-bin-hadoop2.7.tgz
+RUN sudo wget https://dlcdn.apache.org/spark/spark-3.2.1/spark-3.2.1-bin-hadoop3.2.tgz
 RUN sudo mkdir /opt/spark
-RUN sudo tar -xf spark-3.0.3-bin-hadoop2.7.tgz -C /opt/spark --strip-component 1
+# RUN sudo tar -xvzf spark-3.3.0-bin-hadoop3.2.tgz -C /opt/spark
+RUN sudo tar -xf spark-3.2.1-bin-hadoop3.2.tgz -C /opt/spark --strip-component 1
 RUN sudo chmod -R 777 /opt/spark
 RUN echo 'SPARK_HOME=/opt/spark' >> ~/.bashrc
 RUN echo 'PATH=$PATH:$SPARK_HOME/bin:$SPARK_HOME/sbin' >> ~/.bashrc
@@ -66,14 +67,6 @@ RUN . ~/.bashrc
 
 ##COPY Sample Datafiles
 COPY ./sampledata /home/docker/sampledata
-
-## Iceberg Setup
-COPY ./iceberg-spark-init.bash /home/docker/
-COPY ./iceberg-init.bash /home/docker/
-RUN echo 'alias iceberg-init="source /home/docker/iceberg-init.bash"' >> ~/.bashrc
-RUN echo 'alias iceberg-spark-init="source /home/docker/iceberg-spark-init.bash"' >> ~/.bashrc
-RUN mkdir warehouse
-RUN . ~/.bashrc
 
 ## Start Container
 ENTRYPOINT bash
