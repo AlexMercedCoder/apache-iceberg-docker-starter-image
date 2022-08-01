@@ -1,0 +1,18 @@
+#### Nessie + Iceberg Playground Environment
+services:
+ spark-iceberg:
+   image: alexmerced/spark3-3-iceberg0-14
+   ports:
+     - "8080:8080"
+     - "7077:7077"
+     - "8081:8081"
+ nessie:
+   image: projectnessie/nessie
+   ports:
+     - "19120:19120"
+ dremio:
+   image: dremio/dremio-oss:latest
+   ports:
+     - "9047:9047"
+     - "31010:31010"
+     - "45678"

@@ -1,0 +1,12 @@
+#### Nessie + Iceberg Playground Environment
+services:
+ spark-iceberg:
+   image: alexmerced/nessie-sandbox-072722
+   ports:
+     - "8080:8080"
+     - "7077:7077"
+     - "8081:8081"
+ nessie:
+   image: projectnessie/nessie
+   ports:
+     - "19120:19120"

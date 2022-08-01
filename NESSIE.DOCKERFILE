@@ -46,10 +46,10 @@ RUN . ~/.bashrc
 
 ## Install Apache Spark
 RUN sudo apt-get install python3 python3-dev -y
-RUN sudo wget https://dlcdn.apache.org/spark/spark-3.3.0/spark-3.3.0-bin-hadoop3.tgz
+RUN sudo wget https://dlcdn.apache.org/spark/spark-3.2.2/spark-3.2.2-bin-hadoop3.2.tgz
 RUN sudo mkdir /opt/spark
 # RUN sudo tar -xvzf spark-3.3.0-bin-hadoop3.2.tgz -C /opt/spark
-RUN sudo tar -xf spark-3.3.0-bin-hadoop3.tgz -C /opt/spark --strip-component 1
+RUN sudo tar -xf spark-3.2.2-bin-hadoop3.2.tgz -C /opt/spark --strip-component 1
 RUN sudo chmod -R 777 /opt/spark
 RUN echo 'SPARK_HOME=/opt/spark' >> ~/.bashrc
 RUN echo 'PATH=$PATH:$SPARK_HOME/bin:$SPARK_HOME/sbin' >> ~/.bashrc
@@ -60,10 +60,8 @@ RUN . ~/.bashrc
 COPY ./sampledata /home/docker/sampledata
 
 ## Iceberg Setup
-COPY ./iceberg-spark-init.bash /home/docker/
-COPY ./iceberg-init.bash /home/docker/
-RUN echo 'alias iceberg-init="source /home/docker/iceberg-init.bash"' >> ~/.bashrc
-RUN echo 'alias iceberg-spark-init="source /home/docker/iceberg-spark-init.bash"' >> ~/.bashrc
+COPY ./nessie-init2.bash /home/docker/
+RUN echo 'alias nessie-init="source /home/docker/nessie-init.bash"' >> ~/.bashrc
 RUN mkdir warehouse
 RUN . ~/.bashrc
 

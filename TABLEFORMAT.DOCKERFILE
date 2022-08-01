@@ -34,10 +34,10 @@ RUN . ~/.bashrc
 
 ## Install Apache Spark
 RUN sudo apt-get install python3 python3-dev -y
-RUN sudo wget https://archive.apache.org/dist/spark/spark-3.2.1/spark-3.2.1-bin-hadoop3.2.tgz
+RUN sudo wget https://dlcdn.apache.org/spark/spark-3.3.0/spark-3.3.0-bin-hadoop3.tgz
 RUN sudo mkdir /opt/spark
 # RUN sudo tar -xvzf spark-3.3.0-bin-hadoop3.2.tgz -C /opt/spark
-RUN sudo tar -xf spark-3.2.1-bin-hadoop3.2.tgz -C /opt/spark --strip-component 1
+RUN sudo tar -xf spark-3.3.0-bin-hadoop3.tgz -C /opt/spark --strip-component 1
 RUN sudo chmod -R 777 /opt/spark
 RUN echo 'SPARK_HOME=/opt/spark' >> ~/.bashrc
 RUN echo 'PATH=$PATH:$SPARK_HOME/bin:$SPARK_HOME/sbin' >> ~/.bashrc
