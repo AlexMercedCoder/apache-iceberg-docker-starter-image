@@ -1,5 +1,7 @@
 ## Apache Iceberg Playground
 
+[Guide on Recreating Image](./creating-container.md)
+
 This container has the following Installed
 - Java 11
 - Scala 2 & 3
