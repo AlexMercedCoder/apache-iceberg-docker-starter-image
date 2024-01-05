@@ -34,14 +34,19 @@ RUN apt update && apt install -y nano
 RUN echo "fs.s3a.endpoint: http://storage:9000" >> /opt/flink/conf/flink-conf.yaml && \
     echo "fs.s3a.access.key: admin" >> /opt/flink/conf/flink-conf.yaml && \
     echo "fs.s3a.secret.key: password" >> /opt/flink/conf/flink-conf.yaml && \
-    echo "fs.s3a.path.style.access: true" >> /opt/flink/conf/flink-conf.yaml \
+    echo "fs.s3a.path.style.access: true" >> /opt/flink/conf/flink-conf.yaml && \
     echo "fs.s3a.region: us-east-1" >> /opt/flink/conf/flink-conf.yaml
+    
 
 ## Install Minio Client
 RUN wget https://dl.min.io/client/mc/release/linux-amd64/mc && \
     chmod +x mc && \
     mv mc /usr/local/bin && \
     mc alias set myminio http://storage:9000 admin password --api S3v4
+
+# RUN curl -L https://repo1.maven.org/maven2/software/amazon/awssdk/url-connection-client/2.20.18/url-connection-client-2.20.18.jar -o /opt/flink/lib/url-connection-client-2.20.18.jar
+
+RUN curl -L https://repo1.maven.org/maven2/org/apache/iceberg/iceberg-nessie/1.3.0/iceberg-nessie-1.3.0.jar -o /opt/flink/lib/iceberg-nessie-1.3.0.jar
 
 
 CMD ["./bin/start-cluster.sh"]
