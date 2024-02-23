@@ -57,7 +57,7 @@ RUN echo 'PYSPARK_PYTHON=/usr/bin/python3' >> ~/.bashrc
 RUN echo 'SPARK_MASTER_HOST=0.0.0.0' >> ~/.bashrc
 RUN . ~/.bashrc
 
-RUN pip install notebook pyspark
+RUN pip install jupyterlab notebook pyspark
 
 EXPOSE 8888
 EXPOSE 8080
@@ -67,4 +67,4 @@ EXPOSE 4040
 EXPOSE 18080
 
 ## Start Container
-CMD ~/.local/bin/jupyter-notebook --ip 0.0.0.0
+CMD ~/.local/bin/jupyter lab --ip=0.0.0.0 --port=8888
